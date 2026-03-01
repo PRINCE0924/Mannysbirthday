@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to bottom, #a1c4fd, #c2e9fb); /* soothing blues */
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
+.slide {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+.slide.active { display: flex; }
+img {
+    max-width: 90%;
+    max-height: 60vh;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.note {
+    max-width: 650px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: 1px solid #bbb;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+button:hover {
+    background: rgba(255,255,255,0.6);
+    color: #111;
+}
+.feedback {
+    margin-top: 10px;
+    font-style: italic;
+    color: #ffd6f5;
+}
+</style>
+</head>
+<body>
+
+<!-- Slide 1 -->
+<div class="slide active">
+    <img src="photo1.jpg" alt="Memory 1">
+    <div class="note">Which whimsical adventure would you choose for today?</div>
+    <button onclick="checkAnswer(1,true)">Floating through clouds</button>
+    <button onclick="checkAnswer(1,false)">Counting stars</button>
+    <div id="feedback1" class="feedback"></div>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide">
+    <img src="photo2.jpg" alt="Memory 2">
+    <div class="note">What makes you uniquely magnetic?</div>
+    <button onclick="checkAnswer(2,true)">Quiet depth</button>
+    <button onclick="checkAnswer(2,false)">Endless chatter</button>
+    <div id="feedback2" class="feedback"></div>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide">
+    <img src="photo3.jpg" alt="Memory 3">
+    <div class="note">Which color whispers your story today?</div>
+    <button onclick="checkAnswer(3,true)">Blue skies of belonging</button>
+    <button onclick="checkAnswer(3,false)">Grey clouds of mystery</button>
+    <div id="feedback3" class="feedback"></div>
+</div>
+
+<!-- Slide 4: Birthday Message -->
+<div class="slide">
+    <img src="photo4.jpg" alt="Birthday">
+    <div class="note">
+        🎉 Happy Birthday! 🎉<br><br>
+        You are an amazing person — thoughtful, kind, and endlessly fascinating. 
+        I am honored to be part of your journey, to witness your quiet strength, 
+        your whimsical heart, and the light you bring to the world. 
+        I wish you more adventure, more laughter, and above all, the feeling of 
+        quiet belonging and happiness that you deserve.<br><br>
+        Click below for a little surprise…
+    </div>
+    <button onclick="nextSlide()">Reveal Surprise</button>
+</div>
+
+<!-- Slide 5: Frienaversary -->
+<div class="slide">
+    <img src="photo5.jpg" alt="Frienaversary">
+    <div class="note">
+        🥂 Happy 1-Year Frienaversary! 🥂<br><br>
+        I’m looking forward to spending eternity navigating this friendship together — 
+        with whimsy, with laughter, and with the quiet magic only we know.  
+        Thank you for being exactly who you are.
+    </div>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+
+function nextSlide(){
+    slides[currentSlide].classList.remove("active");
+    currentSlide++;
+    if(currentSlide < slides.length){
+        slides[currentSlide].classList.add("active");
+    }
+}
+
+function checkAnswer(q, correct){
+    const feedback = document.getElementById("feedback"+q);
+    if(correct){
+        feedback.textContent = "✨ Correct! ✨";
+        setTimeout(nextSlide, 800);
+    } else {
+        feedback.textContent = "Hmm… try again and see more closely!";
+    }
+}
+</script>
+
+</body>
+</html>
